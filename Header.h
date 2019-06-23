@@ -25,6 +25,6 @@ void FLVazia(TipoLista *Lista);
 
 void Insere(TipoItem x, TipoLista *Lista);
 
-void InsereLinear (TipoItem *A, TipoItem *F, TipoItem *V, TipoItem *O, Apontador Busca, Apontador Busca2);
+void InsereLinear(TipoItem *A, TipoItem *F, TipoItem *V, TipoItem *O, Apontador Busca, Apontador Busca2);
 
 #endif /* Header_h */
