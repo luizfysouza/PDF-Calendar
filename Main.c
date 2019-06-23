@@ -37,7 +37,6 @@ int main() {
         else {
             if (a=='A') an++; if (a=='F') fe++; if (a=='V') vi++; if (a=='O') ou++; //conta a qtd de eventos por categoria
             if (b!=0) {
-                printf ("1");
                 strcpy(Eventos.Especificacao, e);
                 Eventos.Chave = k;
                 Eventos.Evento = a;
@@ -48,7 +47,6 @@ int main() {
                 k++;
             }
             else { //caso o evento tenha que repetir todo dia (dia=0)
-                printf ("2");
                 strcpy(Eventos.Especificacao, e);
                 Eventos.Chave = k;
                 Eventos.Evento = a;
@@ -66,8 +64,7 @@ int main() {
     Busca2 = datas0->Primeiro->Prox; //iguala ele a lista
     TipoItem Aniversarios[an], Feriados[fe], Viagens[vi], Outros[ou];
     InsereLinear (Aniversarios, Feriados, Viagens, Outros, Busca, Busca2);
-    Busca = Datas->Primeiro->Prox;
-    Busca2 = datas0->Primeiro->Prox;
+
     //abaixo o calculo do dia da semana
     int month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     char* day[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
