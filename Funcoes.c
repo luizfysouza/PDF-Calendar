@@ -60,19 +60,9 @@ void InsereLinear(TipoItem *A, TipoItem *F, TipoItem *V, TipoItem *O, Apontador 
         }
         Busca2 = Busca2->Prox;
     }
-   /* TipoItem key;
-    int ji;
-    for (int ad = 1; ad<i; ad++){
-        key.Dia = A[ad].Dia;
-        ji = ji-1;
-        while (ji >= 0 && A[ji].Dia > key.Dia){
-            A[ji+1] = A[ji];
-            ji = ji-1;
-        }
-        A[ji+1] = key;
-    }*/
+    
     for (int g = 0; g < i; g++) {
         printf("%c %d %d %d \n", A[g].Evento, A[g].Dia, A[g].Mes, A[g].Ano);
-        printf("%s\n", A[g].Especificacao);
+        prin tf("%s\n", A[g].Especificacao);
     }
 }
