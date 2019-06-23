@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,7 +40,7 @@ void InsereLinear(TipoItem *A, TipoItem *F, TipoItem *V, TipoItem *O, Apontador 
         }
         Busca = Busca->Prox;
     }
-    while (Busca2 != NULL){
+    while (Busca2 != NULL) {
         switch (Busca2->Item.Evento) {
             case 'A':
                 A[i] = Busca2->Item;
@@ -60,9 +61,9 @@ void InsereLinear(TipoItem *A, TipoItem *F, TipoItem *V, TipoItem *O, Apontador 
         }
         Busca2 = Busca2->Prox;
     }
-    
+
     for (int g = 0; g < i; g++) {
         printf("%c %d %d %d \n", A[g].Evento, A[g].Dia, A[g].Mes, A[g].Ano);
-        prin tf("%s\n", A[g].Especificacao);
+        printf("%s\n", A[g].Especificacao);
     }
 }
