@@ -185,7 +185,7 @@ int main() {
     struct pdf_doc *pdf = pdf_create(PDF_A4_HEIGHT, PDF_A4_WIDTH, &info);
     pdf_set_font(pdf, "Times-Roman");
     pdf_append_page(pdf);
-    pdf_add_jpeg(pdf, NULL, 20, 0, 800, 595, "calendarios/ingles2.jpg");
+    pdf_add_jpeg(pdf, NULL, 20, 0, 800, 595, "calendarios/ingles4.jpg");
     //   switch (aux%7){
     //      case 0: aux%7
     // }
@@ -224,18 +224,21 @@ int main() {
         }
         //tentei printar aqui embaixo o mes anterior, mas n funcionou, sei la...
 
-        //aux4 = 0;
-        //printf ("%d", aux4);
-     /*for (i = 0; i<aux4; i++ ){
-       //  contador = month2[ma-1] - d%7;
-         sprintf (num, "%i", contador);
-         printf ("%d", contador);
-         pdf_add_text(pdf, NULL, num, 16, 27, 340 , PDF_BLACK);
-         contador++;
-     }*/
-
-
     }
+    
+    
+    //aqui em baixo é pro mes de tras, mas n consegui terminar
+    /*
+    printf ("%d", aux4);
+    contador = month2[ma-1] - d%7;
+    for (i = 0; i<aux4; i++ ){
+        printf ("contador :%d", contador);
+        sprintf (num, "%i", contador);
+        pdf_add_text(pdf, NULL, num, 16, 27, 340 , PDF_BLACK);
+        contador++;
+    }*/
+    
+    
     pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_BLACK);
 
     //ateh aqui
