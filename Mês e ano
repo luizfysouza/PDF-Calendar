@@ -1,6 +1,6 @@
     char str2[15];
     char str3[] = {" "}; //cria uma string contendo soh espaco pra concatenar dps
-    char strm[15];
+    char strm[20];
     sprintf(str2, "%i", eano); //coloca o ano (int) numa string
     if (lingua == 0) {
         strcpy(strm, mesport[emes - 1]);    //coloca o a string do mes numa string em pt ou en
