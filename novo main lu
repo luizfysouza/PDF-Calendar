@@ -26,7 +26,7 @@ int main() {
     if (lingua==0)
         printf("%s %d\n", mesport[emes-1], eano);
     if (lingua==1)
-        printf("%s %d\n", mesing[emes], eano);
+        printf("%s %d\n", mesing[emes-1], eano);
     TipoItem Eventos;
     TipoLista *Datas = malloc(sizeof(TipoLista));
     TipoLista *datas0 = malloc(sizeof(TipoLista));
@@ -122,6 +122,97 @@ int main() {
     }
     printf("\n\n");
     
+    //strings para nome do mes no pdf
+    char str2[15];
+    char str3[] = {" "};
+    char strm[20];
+    sprintf(str2, "%i", eano); //coloca o ano (int) numa string
+    if (lingua == 0) {
+        strcpy(strm, mesport[emes - 1]);    //coloca o a string do mes numa string em pt ou en
+    } else
+        strcpy(strm, mesing[emes - 1]);
+    strcat(strm, str3);  //concatena a string do espaco junto com a da string do mes
+    strcat(strm, str2);  //concatena a string criada contendo o ano com a do mes
+    
+    //strings para o mes anterior pdf
+    char str2a[15];
+    char str3a[] = {" "};
+    char strma[20];
+    //strings para o proximo mes pdf
+    char str2p[15];
+    char str3p[] = {" "};
+    char strmp[20];
+    
+  //  sprintf(str2a, "%i", eano); //coloc o ano (int) numa string
+    if (lingua == 0) {
+        if (emes==1){
+            strcpy(strma, mesport[11]);    //coloca o a string do mes numa string em pt ou en
+            sprintf(str2a, "%i", eano-1); //coloca o ano (int) numa string
+            strcat(strma, str3a);
+            strcat(strma, str2a);
+        }
+        else {
+            sprintf(str2a, "%i", eano);
+            strcpy(strma, mesport[emes - 2]);    //coloca o a string do mes numa string em pt ou en
+            strcat(strma, str3a);  //concatena a string do espaco junto com a da string do mes
+            strcat(strma, str2a);  //concatena a string criada contendo o ano com a do mes
+            
+        }
+        if (emes==12){
+            strcpy(strmp, mesport[0]);    //coloca o a string do mes numa string em pt ou en
+            sprintf(str2p, "%i", eano+1); //coloca o ano (int) numa string
+            strcat(strmp, str3p);
+            strcat(strmp, str2p);
+        }
+        else {
+            sprintf(str2p, "%i", eano);
+            strcpy(strmp, mesport[emes]);    //coloca o a string do mes numa string em pt ou en
+            strcat(strmp, str3p);  //concatena a string do espaco junto com a da string do mes
+            strcat(strmp, str2p);
+        }
+        /*if (emes != 12 && emes != 1){
+        //mes anterior
+        sprintf(str2a, "%i", eano);
+        strcpy(strma, mesport[emes - 2]);    //coloca o a string do mes numa string em pt ou en
+        strcat(strma, str3a);  //concatena a string do espaco junto com a da string do mes
+        strcat(strma, str2a);  //concatena a string criada contendo o ano com a do mes
+        //mes prox
+        sprintf(str2a, "%i", eano);
+        strcpy(strmp, mesport[emes]);    //coloca o a string do mes numa string em pt ou en
+        strcat(strmp, str3p);  //concatena a string do espaco junto com a da string do mes
+        strcat(strmp, str2p);
+        }*/
+    }
+    else {
+        if (emes==1){
+            strcpy(strma, mesing[11]);    //coloca o a string do mes numa string em pt ou en
+            sprintf(str2a, "%i", eano-1); //coloca o ano (int) numa string
+            strcat(strma, str3a);
+            strcat(strma, str2a);
+        }
+        else {
+            sprintf(str2a, "%i", eano);
+            strcpy(strma, mesing[emes - 2]);    //coloca o a string do mes numa string em pt ou en
+            strcat(strma, str3a);  //concatena a string do espaco junto com a da string do mes
+            strcat(strma, str2a);  //concatena a string criada contendo o ano com a do mes
+        }
+        if (emes==12){
+            strcpy(strmp, mesing[0]);    //coloca o a string do mes numa string em pt ou en
+            sprintf(str2p, "%i", eano+1); //coloca o ano (int) numa string
+            strcat(strmp, str3p);
+            strcat(strmp, str2p);
+        }
+        else {
+            sprintf(str2p, "%i", eano);
+            strcpy(strmp, mesing[emes]);    //coloca o a string do mes numa string em pt ou en
+            strcat(strmp, str3p);  //concatena a string do espaco junto com a da string do mes
+            strcat(strmp, str2p);
+        }
+    }
+    printf("string do mes %s\n", strm);
+    printf("mes ant: %s\n", strma);
+    printf("mes post: %s\n", strmp);
+    
     //ordenacao e pesquisa
     
     if (lingua == 0)
@@ -178,7 +269,7 @@ int main() {
     Busca = Datas->Primeiro->Prox;
     Busca2 = datas0->Primeiro->Prox;
     
-    //mexi daqui
+    //calculos para o pdf
     //aqui pega os 2 outros meses q a gente precisa
     int month2[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int month3[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -217,7 +308,9 @@ int main() {
     
     //ateh aqui
     luiz2 = da%7; luiz = dp%7;
-        struct pdf_info info = {
+    
+    //criacao do arquivo pdf
+    struct pdf_info info = {
             .creator = "My software",
             .producer = "My software",
             .title = "My document",
@@ -228,23 +321,35 @@ int main() {
         struct pdf_doc *pdf = pdf_create(PDF_A4_HEIGHT, PDF_A4_WIDTH, &info);
         pdf_set_font(pdf, "Times-Roman");
         pdf_append_page(pdf);
-     int cc;
+    
+    
+    
+    //escolhas para o calendario
+    int cc;
     if (lingua==0){
-        printf("Calendario com mes anterior presente: digite 1\nCalendario com mes posterior presente: digite 2\nSomente o mes desejado: digite 0\nCalendario com mes anterior e posterior: digite 4\n");
+        printf("Calendario com mes anterior presente: digite 1\nCalendario com mes posterior presente: digite 2\nSomente o mes desejado: digite 3\nCalendario com mes anterior e posterior: digite 4\n");
         scanf("%d", &cc);
         switch (cc) {
-            case 0:
+            case 1:{
+                pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port1e.jpg");
+                pdf_add_text(pdf, NULL, strma, 20, 27, 568, PDF_BLACK);
+                break;
+            }
+            case 2:{
+                pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port1.jpg");
+                pdf_add_text(pdf, NULL, strmp, 20, 650, 568, PDF_BLACK);
+                break;
+            }
+            case 3:{
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port.jpg");
                 break;
-            case 1:
-                pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port1e.jpg");
-                break;
-            case 2:
-                pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port1.jpg");
-                break;
-            case 4:
+            }
+            case 4:{
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/port2.jpg");
+                pdf_add_text(pdf, NULL, strma, 20, 27, 568, PDF_BLACK);
+                pdf_add_text(pdf, NULL, strmp, 20, 650, 568, PDF_BLACK);
                 break;
+            }
             default:
                 break;
         }
@@ -254,18 +359,21 @@ int main() {
         scanf("%d", &cc);
         switch (cc) {
             case 3:{
-                printf("chegou no case\n");
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/ingles.jpg");
                 break;
             }
             case 1:
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/ingles1e.jpg");
+                pdf_add_text(pdf, NULL, strma, 20, 27, 568, PDF_BLACK);
                 break;
             case 2:
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/ingles1.jpg");
+                pdf_add_text(pdf, NULL, strmp, 20, 650, 568, PDF_BLACK);
                 break;
             case 4:
                 pdf_add_jpeg (pdf, NULL, 20, 0, 800, 595, "calendarios/ingles2.jpg");
+                pdf_add_text(pdf, NULL, strma, 20, 27, 568, PDF_BLACK);
+                pdf_add_text(pdf, NULL, strmp, 20, 650, 568, PDF_BLACK);
                 break;
             default:
                 break;
@@ -397,8 +505,8 @@ int main() {
             }
     }
     
-    pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_BLACK);
-    
+    //pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_BLACK); // ISSO AQUI EU N SEI O QUE IMPRIME
+    pdf_add_text(pdf, NULL, strm, 35, 300, 515, PDF_BLACK); //nome do mes
     
     
 
@@ -407,7 +515,6 @@ int main() {
 
     
     if (cc==4 || cc==1){
-        pdf_add_text(pdf, NULL, "Dezembro 2019", 20, 27, 568, PDF_BLACK);
         contador = 1, xx=27 + (luiz2 * 25), yy=530;
         for (i = luiz2; i <= 6; i++) {  //esse for aqui pega do 6-d&7, que eh o numero correspondente ao 1 dia do mes, e vai ate o 6, que seria o sabado
         //ai, se comecar no domingo, por exemplo, printa 1 vez soh, pq d&7 seria 6, que eh o correspondente ao domingo
@@ -439,23 +546,20 @@ int main() {
     if (cc==4 || cc==2){
     printf ("luiz eh %d", luiz);
     contador = 1, xx=650 + (luiz * 25), yy=530;
-    for (i = luiz; i <= 6; i++) {  //esse for aqui pega do 6-d&7, que eh o numero correspondente ao 1 dia do mes, e vai ate o 6, que seria o sabado
-        //ai, se comecar no domingo, por exemplo, printa 1 vez soh, pq d&7 seria 6, que eh o correspondente ao domingo
-        //printf ("xx eh %d", xx);
+    for (i = luiz; i <= 6; i++) { 
         sprintf(num, "%i", contador);
         pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_ARGB(0x80, 0, 0, 0	));
-        xx += 25, contador++; //corrige o x pra ir pra proxima parte da tabela e aumenta o contador, q eu voltei pra 1 ali em cima, pra printar os dias
-        sprintf(num, "%i", contador); //ai aqui troca o valor da string q eu to printando no pdf pra contador++, entao iria do dia 1 pro dia 2, por ex
+        xx += 25, contador++;
+        sprintf(num, "%i", contador);
     }
     contador--;
     printf ("luiz2 eh %d", luiz2);
     for (i = contador; i < month3[mp - 1]; i++) {
         yy -= 15;
-        xx = 650; //reseta o x a cada 7 vezes, troca de linha
-        if (contador < month3[mp-1]) //aqui eh pra fazer aquilo q vc disse de deixar a ultima linha em branco em certos casos
-            //depois podemos fazer, se variavel < = 3, nao imprime nada do proximo mes, pq ai so vai ter a 1 linha do for de cima + 3 dessas
+        xx = 650;
+        if (contador < month3[mp-1])
             variavel++;
-        for (j = 0; j < 7; j++) { //esse for aqui imprime em sequencia na mesma linha
+        for (j = 0; j < 7; j++) {
             if (contador < month3[mp-1]){
                 contador++;
                 sprintf(num, "%i", contador);
@@ -465,8 +569,6 @@ int main() {
         }
     }
     }
-    
-    //ateh aqui
     
     
       /*  pdf_add_text(pdf, NULL, "1", 16, 27, 410, PDF_BLACK);     //115 eh a dist entre os dias horizontal
