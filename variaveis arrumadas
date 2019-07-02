@@ -145,7 +145,7 @@ int main() {
         contador++;
         d++;
     }
-    printf("\n\n");
+    printf("\n");
     
     //strings para nome do mes no pdf
     sprintf(str2, "%i", eano); //coloca o ano (int) numa string
@@ -443,7 +443,6 @@ int main() {
                             break;
                     }
                     pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx+18, lulu, PDF_BLACK);
-                    printf("%s\n",Busca->Item.Especificacao);
                 }
                 else
                     pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx, lulu, PDF_BLACK);
@@ -452,7 +451,6 @@ int main() {
             Busca = Busca->Prox;
         }
         while (Busca2 != NULL){
-            printf("chegou no while do busca 2\n");
             if (Busca2->Item.Evento != 'O'){
                 switch (Busca2->Item.Evento) {
                     case 'A':
@@ -466,18 +464,15 @@ int main() {
                         break;
                 }
                 pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx+15, lulu, PDF_BLACK);
-                printf("era pra ter impresso o busca2: %s \n", Busca2->Item.Especificacao);
             }
-            else{
+            else
                 pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx, lulu, PDF_BLACK);
-                printf("era pra ter impresso o busca2: %s \n", Busca2->Item.Especificacao);}
             Busca2 = Busca2->Prox;
             lulu-=15;
         }
         Busca = Datas->Primeiro->Prox;
         Busca2 = datas0->Primeiro->Prox;
         pdf_add_text(pdf, NULL, num, 16, xx, 410, PDF_BLACK);
-        printf("imprimiu o dia %s\n", num);
         xx += 115, contador++; //corrige o x pra ir pra proxima parte da tabela e aumenta o contador, q eu voltei pra 1 ali em cima, pra printar os dias
         sprintf(num, "%i", contador); //ai aqui troca o valor da string que printa no pdf pra contador++, entao iria do dia 1 pro dia 2, por ex
     }
@@ -510,8 +505,6 @@ int main() {
                                     break;
                             }
                             pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx+18, lulu, PDF_BLACK);
-                            printf("dia: %d\n", contador);
-                            printf("%s\n",Busca->Item.Especificacao);
                         }
                         else
                             pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx, lulu, PDF_BLACK);
@@ -542,7 +535,6 @@ int main() {
                 Busca = Datas->Primeiro->Prox;
                 Busca2 = datas0->Primeiro->Prox;
                 xx += 114;
-               // printf ("y eh %d\n", yy);
                 xx2 = xx;
                 yy2=yy;
             }
@@ -594,7 +586,6 @@ int main() {
         contador = 1, xx=27 + (luiz2 * 25), yy=530;
         for (i = luiz2; i <= 6; i++) {  //esse for aqui pega do 6-d&7, que eh o numero correspondente ao 1 dia do mes, e vai ate o 6, que seria o sabado
         //ai, se comecar no domingo, por exemplo, printa 1 vez soh, pq d&7 seria 6, que eh o correspondente ao domingo
-        //printf ("xx eh %d", xx);
             sprintf(num, "%i", contador);
             pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_ARGB(0x80, 0, 0, 0	));
             xx += 25, contador++; //corrige o x pra ir pra proxima parte da tabela e aumenta o contador, q eu voltei pra 1 ali em cima, pra printar os dias
