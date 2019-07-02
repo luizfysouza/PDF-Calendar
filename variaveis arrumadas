@@ -533,11 +533,6 @@ int main() {
     
     //pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_BLACK); // ISSO AQUI EU N SEI O QUE IMPRIME
     pdf_add_text(pdf, NULL, strm, 35, 300, 515, PDF_BLACK); //nome do mes
-    
-    
-
-    printf ("dpercento eh %d", da%7);
-    //luiz2 = 6-luiz2;
 
     
     if (cc==4 || cc==1){
@@ -570,7 +565,6 @@ int main() {
     
     
     if (cc==4 || cc==2){
-    printf ("luiz eh %d", luiz);
     contador = 1, xx=650 + (luiz * 25), yy=530;
     for (i = luiz; i <= 6; i++) { 
         sprintf(num, "%i", contador);
@@ -579,7 +573,6 @@ int main() {
         sprintf(num, "%i", contador);
     }
     contador--;
-    printf ("luiz2 eh %d", luiz2);
     for (i = contador; i < month3[mp - 1]; i++) {
         yy -= 15;
         xx = 650;
