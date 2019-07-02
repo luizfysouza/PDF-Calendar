@@ -423,10 +423,11 @@ int main() {
     
     sprintf(num, "%i", contador);  //transforma o int em string, o programa so aceita printar string, usa asc 2
     xx = 27 + (aux5 * 115), yy = 410; // 27+aux*115 pega quantos dias da semana jah se passaram na 1 linha e multiplica a distancia vertical entre as semanas por ela
-    lulu=yy-15;
-    lulu2=yy-15;
+    
     for (i = aux5; i <= 6; i++) {  //esse for aqui pega do 6-d&7, que eh o numero correspondente ao 1 dia do mes, e vai ate o 6, que seria o sabado
         //ai, se comecar no domingo, por exemplo, printa 1 vez soh, pq d&7 seria 6, que eh o correspondente ao domingo
+        lulu=yy-15;
+        lulu2=yy-15;
         while (Busca != NULL){
             if (Busca->Item.Dia  == contador){
                 if (Busca->Item.Evento != 'O'){
@@ -442,7 +443,6 @@ int main() {
                             break;
                     }
                     pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx+18, lulu, PDF_BLACK);
-                    printf("dia: %d\n", contador);
                     printf("%s\n",Busca->Item.Especificacao);
                 }
                 else
@@ -452,6 +452,7 @@ int main() {
             Busca = Busca->Prox;
         }
         while (Busca2 != NULL){
+            printf("chegou no while do busca 2\n");
             if (Busca2->Item.Evento != 'O'){
                 switch (Busca2->Item.Evento) {
                     case 'A':
@@ -465,15 +466,18 @@ int main() {
                         break;
                 }
                 pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx+15, lulu, PDF_BLACK);
+                printf("era pra ter impresso o busca2: %s \n", Busca2->Item.Especificacao);
             }
-            else
+            else{
                 pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx, lulu, PDF_BLACK);
+                printf("era pra ter impresso o busca2: %s \n", Busca2->Item.Especificacao);}
             Busca2 = Busca2->Prox;
             lulu-=15;
         }
         Busca = Datas->Primeiro->Prox;
         Busca2 = datas0->Primeiro->Prox;
         pdf_add_text(pdf, NULL, num, 16, xx, 410, PDF_BLACK);
+        printf("imprimiu o dia %s\n", num);
         xx += 115, contador++; //corrige o x pra ir pra proxima parte da tabela e aumenta o contador, q eu voltei pra 1 ali em cima, pra printar os dias
         sprintf(num, "%i", contador); //ai aqui troca o valor da string que printa no pdf pra contador++, entao iria do dia 1 pro dia 2, por ex
     }
