@@ -25,7 +25,6 @@ int main() {
     int an=0, fe=0, vi=0, ou=0;
     int xx2=0, yy2=0; //auxiliares para mexer na impressao do pdf
     Apontador Busca, Busca2;  //para colocar os dados da lista em outro vetor
-    TipoItem Aniversarios[an], Feriados[fe], Viagens[vi], Outros[ou]; // cria itens de arranjos especificos para cada evento - lista linear
     int month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; //# de dias/mes para calculo do dia da semana
     //nomes dos dias da semana nas duas linguas
     char* day[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -103,6 +102,7 @@ int main() {
     
     Busca = Datas->Primeiro->Prox; //iguala ele a lista principal
     Busca2 = datas0->Primeiro->Prox; //iguala ele a lista dos dias 0
+    TipoItem Aniversarios[an], Feriados[fe], Viagens[vi], Outros[ou]; // cria itens de arranjos especificos para cada evento - lista linear
     InsereLinear (Aniversarios, Feriados, Viagens, Outros, Busca, Busca2); //insere esses itens em uma lista linear
     
     //abaixo o calculo do dia da semana
