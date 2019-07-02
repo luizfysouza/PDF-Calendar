@@ -25,7 +25,7 @@ int main() {
     int an=0, fe=0, vi=0, ou=0;
     int xx2=0, yy2=0; //auxiliares para mexer na impressao do pdf
     Apontador Busca, Busca2;  //para colocar os dados da lista em outro vetor
-    TipoItem Aniversarios[an], Feriados[fe], Viagens[vi], Outros[ou]; // cria itens de arranjos especificos para cada evento
+    TipoItem Aniversarios[an], Feriados[fe], Viagens[vi], Outros[ou]; // cria itens de arranjos especificos para cada evento - lista linear
     int month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; //# de dias/mes para calculo do dia da semana
     //nomes dos dias da semana nas duas linguas
     char* day[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -118,6 +118,7 @@ int main() {
             d += 365;
     for (i = 0; i < m - 1; i++)
         d += month[i];
+    contador = 1, aux = d, aux4 = d%7;
     for (i =0; i<month[m-1]; i++){
         if (lingua==1)
             printf("%d %s\n", contador, day[d % 7]);
@@ -260,15 +261,12 @@ int main() {
         else
             printf("To search by especific day, type 0\nTo search by type of event, type 1.\n");
         scanf("%d", &pp1);
-        printf("o pp1 eh %d\n", pp1);
         if (pp1==0){
-            printf("entrou no if da pesquisa por dia\n");
             if (lingua == 0)
                 printf("Digite o dia do mes escolhido que deseja pesquisar: ");
             else
                 printf("Type the day to be searched: ");
             scanf("%d", &dpp);
-            printf("o dpp eh %d\n", dpp);
             if (dpp==0 || dpp > month[m-1]){
                 if (lingua == 0)
                     printf("Dia digitado invalido.\n");
@@ -310,6 +308,7 @@ int main() {
     //calculos para o pdf
     
     //aqui pega os 2 outros meses: anterior e proximo
+    da = 1, dp = 1, ma = m - 1, mp = m + 1, yp=y, ya=y;
     if (m==12){
         yp = y+1;
         mp=1;
@@ -421,7 +420,7 @@ int main() {
     //se o 1 dia for sexta, d&7 vai ser 5, entao 6-5=1, vai faltar 1 dia pra fechar a semana
     
     sprintf(num, "%i", contador);  //transforma o int em string, o programa so aceita printar string, usa asc 2
-    xx = 27 + (aux5 * 115), yy = 410 , j; // 27+aux*115 pega quantos dias da semana jah se passaram na 1 linha e multiplica a distancia vertical entre as semanas por ela
+    xx = 27 + (aux5 * 115), yy = 410; // 27+aux*115 pega quantos dias da semana jah se passaram na 1 linha e multiplica a distancia vertical entre as semanas por ela
     for (i = aux5; i <= 6; i++) {  //esse for aqui pega do 6-d&7, que eh o numero correspondente ao 1 dia do mes, e vai ate o 6, que seria o sabado
         //ai, se comecar no domingo, por exemplo, printa 1 vez soh, pq d&7 seria 6, que eh o correspondente ao domingo
         pdf_add_text(pdf, NULL, num, 16, xx, 410, PDF_BLACK);
@@ -457,6 +456,8 @@ int main() {
                                     break;
                             }
                             pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx+18, lulu, PDF_BLACK);
+                            printf("dia: %d\n", contador);
+                            printf("%s\n",Busca->Item.Especificacao);
                         }
                         else
                             pdf_add_text(pdf, NULL,  Busca->Item.Especificacao, 10, xx, lulu, PDF_BLACK);
