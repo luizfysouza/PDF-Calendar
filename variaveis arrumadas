@@ -300,6 +300,7 @@ int main() {
         fclose (file); //encerram-se manipulacoes com arquivo de texto
     
     //fim da ordenacao e pesquisa
+    printf("\n\n");
     
     //retorna os apontadores para o comeco
     Busca = Datas->Primeiro->Prox;
@@ -457,10 +458,10 @@ int main() {
                         pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/A.jpg");
                         break;
                     case 'F':
-                        pdf_add_jpeg (pdf, NULL, xx, lulu-3, 10, 8, "icones/F.jpg");
+                        pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/F.jpg");
                         break;
                     case 'V':
-                        pdf_add_jpeg (pdf, NULL, xx, lulu-3, 10, 8, "icones/v.jpg");
+                        pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/v.jpg");
                         break;
                 }
                 pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx+15, lulu, PDF_BLACK);
@@ -519,10 +520,10 @@ int main() {
                                 pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/A.jpg");
                                 break;
                             case 'F':
-                                pdf_add_jpeg (pdf, NULL, xx, lulu-3, 10, 8, "icones/F.jpg");
+                                pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/F.jpg");
                                 break;
                             case 'V':
-                                pdf_add_jpeg (pdf, NULL, xx, lulu-3, 10, 8, "icones/v.jpg");
+                                pdf_add_jpeg (pdf, NULL, xx, lulu-3, 15, 12, "icones/v.jpg");
                                 break;
                         }
                         pdf_add_text(pdf, NULL,  Busca2->Item.Especificacao, 10, xx+15, lulu, PDF_BLACK);
@@ -577,8 +578,6 @@ int main() {
                 xx2 += 114;
             }
     }
-    
-    //pdf_add_text(pdf, NULL, num, 16, xx, yy, PDF_BLACK); // ISSO AQUI EU N SEI O QUE IMPRIME
     pdf_add_text(pdf, NULL, strm, 35, 300, 515, PDF_BLACK); //nome do mes
 
     
