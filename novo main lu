@@ -229,6 +229,11 @@ int main() {
         if (oo1){
             Busca = Datas->Primeiro->Prox;
             Busca2 = datas0->Primeiro->Prox;
+            while (Busca2 != NULL){
+                printf("%c 0 %d %d ", Busca2->Item.Evento, Busca2->Item.Mes, Busca2->Item.Ano);
+                printf("%s\n", Busca2->Item.Especificacao);
+                Busca2 = Busca2->Prox;
+            }
             for (i=1;i<=month[m-1]; i++){
                 while (Busca != NULL){
                     if (i == Busca->Item.Dia){
@@ -236,11 +241,6 @@ int main() {
                         printf("%s\n", Busca->Item.Especificacao);
                     }
                     Busca = Busca->Prox;
-                }
-                while (Busca2 != NULL){
-                    printf("%c %d %d %d ", Busca2->Item.Evento, i, Busca2->Item.Mes, Busca2->Item.Ano);
-                    printf("%s\n", Busca2->Item.Especificacao);
-                    Busca2 = Busca2->Prox;
                 }
             Busca = Datas->Primeiro->Prox;
             Busca2 = datas0->Primeiro->Prox;
@@ -253,16 +253,63 @@ int main() {
             Ordena (Outros, ou);
         }
     }
-    char E;
-    if (lingua == 0)
-        printf("Para pesquisa por evento, digite A (aniversarios), F (feriados), V (viagens) ou O (outros):\n");
-    else
-        printf("To search by event, type A (birthdays), F (holidays), V (trips) ou O (others):\n");
-    scanf("%c", &E);
-    scanf("%c", &E);
-    if (E=='A') PesquisaEvento (Aniversarios, an); if (E=='F') PesquisaEvento (Feriados, fe);
-    if (E=='V') PesquisaEvento (Viagens, vi); if (E=='O') PesquisaEvento (Outros, ou);
-    fclose (file);
+    
+    //pesquisa
+    int pp, pp1, dpp; char E; //pp se vai ou nao pesquisar, pp1 pra tipo de pesquisa, dpp dia pesquisa, E tipo evento
+    if (lingua==0)
+        printf("Pesquisar eventos: 0 para nao; 1 para sim\n");
+    if (lingua==1)
+        printf("Search events: 0 for no; 1 for yes\n");
+    //scanf("%d", &pp);
+    scanf("%d", &pp);
+    if (pp){
+        if (lingua == 0)
+            printf("Para pesquisar por dia, digite 0.\nPara pesquisar por tipo de evento, digite 1.\n");
+        else
+            printf("To search by especific day, type 0\nTo search by type of event, type 1.\n");
+        //scanf("%d", &pp1);
+        scanf("%d", &pp1);
+        printf("o pp1 eh %d\n", pp1);
+        if (pp1==0){
+            printf("entrou no if da pesquisa por dia\n");
+            if (lingua == 0)
+                printf("Digite o dia do mes escolhido que deseja pesquisar: ");
+            else
+                printf("Type the day to be searched: ");
+            //scanf("%d", &dpp);
+            scanf("%d", &dpp);
+            printf("o dpp eh %d\n", dpp);
+            if (dpp==0 || dpp > month[m-1]){
+                if (lingua == 0)
+                    printf("Dia digitado invalido.\n");
+                else
+                    printf("Typed day not valid\n");
+            }
+            else {
+                Busca = Datas->Primeiro->Prox;
+                for (i=1;i<=month[m-1]; i++){
+                    while (Busca != NULL){
+                        if (Busca->Item.Dia == dpp){
+                            printf("%c %d %d %d ", Busca->Item.Evento, Busca->Item.Dia, Busca->Item.Mes, Busca->Item.Ano);
+                            printf("%s\n", Busca->Item.Especificacao);
+                        }
+                        Busca = Busca->Prox;
+                    }
+                }
+            }
+        }
+        else {
+            if (lingua == 0)
+                printf("Para pesquisa por evento, digite A (aniversarios), F (feriados), V (viagens) ou O (outros):\n");
+            else
+                printf("To search by event, type A (birthdays), F (holidays), V (trips) ou O (others):\n");
+            scanf("%c", &E);
+            scanf("%c", &E);
+            if (E=='A') PesquisaEvento (Aniversarios, an); if (E=='F') PesquisaEvento (Feriados, fe);
+            if (E=='V') PesquisaEvento (Viagens, vi); if (E=='O') PesquisaEvento (Outros, ou);
+        }
+    }
+        fclose (file);
     
     //fim da ordenacao e pesquisa
     
