@@ -26,23 +26,23 @@
  *
  * @par PDF library example:
  * @code
-#include "pdfgen.h"
+ #include "pdfgen.h"
  ...
-struct pdf_info info = {
-         .creator = "My software",
-         .producer = "My software",
-         .title = "My document",
-         .author = "My name",
-         .subject = "My subject",
-         .date = "Today"
-         };
-struct pdf_doc *pdf = pdf_create(PDF_A4_WIDTH, PDF_A4_HEIGHT, &info);
-pdf_set_font(pdf, "Times-Roman");
-pdf_append_page(pdf);
-pdf_add_text(pdf, NULL, "This is text", 12, 50, 20, PDF_BLACK);
-pdf_add_line(pdf, NULL, 50, 24, 150, 24);
-pdf_save(pdf, "output.pdf");
-pdf_destroy(pdf);
+ struct pdf_info info = {
+ .creator = "My software",
+ .producer = "My software",
+ .title = "My document",
+ .author = "My name",
+ .subject = "My subject",
+ .date = "Today"
+ };
+ struct pdf_doc *pdf = pdf_create(PDF_A4_WIDTH, PDF_A4_HEIGHT, &info);
+ pdf_set_font(pdf, "Times-Roman");
+ pdf_append_page(pdf);
+ pdf_add_text(pdf, NULL, "This is text", 12, 50, 20, PDF_BLACK);
+ pdf_add_line(pdf, NULL, 50, 24, 150, 24);
+ pdf_save(pdf, "output.pdf");
+ pdf_destroy(pdf);
  * @endcode
  */
 
@@ -106,7 +106,7 @@ struct pdf_info {
  * in PDFGen
  */
 #define PDF_RGB(r, g, b)                                                     \
-    ((((r)&0xff) << 16) | (((g)&0xff) << 8) | (((b)&0xff)))
+((((r)&0xff) << 16) | (((g)&0xff) << 8) | (((b)&0xff)))
 
 /**
  * Convert four 8-bit ARGB values into a single packed 32-bit
@@ -115,8 +115,8 @@ struct pdf_info {
  * (transparent)
  */
 #define PDF_ARGB(a, r, g, b)                                                 \
-    ((((a)&0xff) << 24) | (((r)&0xff) << 16) | (((g)&0xff) << 8) |           \
-     (((b)&0xff)))
+((((a)&0xff) << 24) | (((r)&0xff) << 16) | (((g)&0xff) << 8) |           \
+(((b)&0xff)))
 
 /**
  * Utility macro to provide bright red
@@ -403,9 +403,9 @@ int pdf_add_filled_polygon(struct pdf_doc *pdf, struct pdf_object *page,
  * Add a bookmark to the document
  * @param pdf PDF document to add bookmark to
  * @param page Page to jump to for bookmark
-               (or NULL for the most recently added page)
+ (or NULL for the most recently added page)
  * @param parent ID of a previously created bookmark that is the parent
-               of this one. -1 if this should be a top-level bookmark.
+ of this one. -1 if this should be a top-level bookmark.
  * @param name String to associate with the bookmark
  * @return < 0 on failure, new bookmark id on success
  */

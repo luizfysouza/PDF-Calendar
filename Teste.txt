@@ -1,0 +1,17 @@
+﻿A 14 03 0 outro anis
+O 1 03 2019  dia primeiro
+A 12 03 0 meu aniversário
+A 04 03 0 meu an
+V 02 03 2019 viagem2
+O 03 03 2019 outro outro
+V 18 03 2019 viagem3
+F 25 03 2019 OUTRO FERI
+A 13 03 0 lucas
+F 30 03 2019 feriado
+V 16 03 2019 viagem3
+O 25 03 2019 outros
+A 15 03 0 an ju
+F 13 03 2019 ASD
+V 0 0 0 ação
+F 22 03 2019 OUTRO
+O 0 0 0 outros dia 0
