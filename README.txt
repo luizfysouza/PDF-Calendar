@@ -1,6 +1,6 @@
 ﻿O algoritmo imprime um calendário em forma de lista em português ou inglês a partir de um arquivo dado pelo usuário, ordena e busca dentro deste arquivo e, por fim, gera um pdf com o calendário.
 Para utilizar o programa, deverá ser colocado um arquivo .txt (cujo nome será requisitado quando compilar) na pasta do projeto.
-O arquivo deve estar na pasta do projeto ou configurado de acordo com a IDE para usá-lo.
+O arquivo deve estar na pasta do projeto ou configurado de acordo com a IDE para usá-lo, o arquivo principal é o calendario.c.
 O nome do arquivo deverá ser colocado no compilador com o final .txt. Por exemplo, se o arquivo se chamar "Arquivo", como será dito no programa, é necessário escrever como "Arquivo.txt" no compilador
 O .txt deve conter o tipo de evento, dia, mês, ano, e especificação.
 Por exemplo:
